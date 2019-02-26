@@ -8,47 +8,48 @@
   </head>
   <body>
     <h1>Welcome To Hogwarts</h1>
+
+    <div class="dropdown-container">
+      <div class="dropdown-content">
+        <select name="filter-Maison" class="dropdown-select">
+          <option>Filter...</option>
+          <option id="filter_button_all" data-house="all">All</option>
+          <option id="filter_button_Hufflepuff" data-house="Hufflepuff"
+            >Hufflepuff</option
+          >
+          <option id="filter_button_Gryffondor" data-house="Gryffondor"
+            >Gryffondor</option
+          >
+          <option id="filter_button_Ravenclaw" data-house="Ravenclaw"
+            >Ravenclaw</option
+          >
+          <option id="filter_button_Slytherin" data-house="Slytherin"
+            >Serpentard</option
+          >
+        </select>
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <div class="dropdown-content">
+        <select name="Sort-student" class="dropdown-select">
+          <option>Sort...</option>
+          <option class="sort_button" data-sort="firstNamestudent"
+            >First name</option
+          >
+          <option class="sort_button" data-sort="lastNamestudent"
+            >Last name</option
+          >
+          <option class="sort_button" data-sort="houseStudent">House</option>
+        </select>
+      </div>
+    </div>
     <main>
-      <div class="dropdown-container">
-        <div class="dropdown-content">
-          <select name="filter-Maison" class="dropdown-select">
-            <option>Filter...</option>
-            <option class="filter_button" data-house="all">All</option>
-            <option class="filter_button" data-house="Hufflepuff"
-              >Hufflepuff</option
-            >
-            <option class="filter_button" data-house="Gryffondor"
-              >Gryffondor</option
-            >
-            <option class="filter_button" data-house="Ravenclaw"
-              >Ravenclaw</option
-            >
-            <option class="filter_button" data-house="Slytherin"
-              >Serpentard</option
-            >
-          </select>
-        </div>
-      </div>
-
-      <div class="dropdown-container">
-        <div class="dropdown-content">
-          <select name="Sort-student" class="dropdown-select">
-            <option>Sort...</option>
-            <option class="sort_button" data-sort="firstNamestudent"
-              >First name</option
-            >
-            <option class="sort_button" data-sort="lastNamestudent"
-              >Last name</option
-            >
-            <option class="sort_button" data-sort="houseStudent">House</option>
-          </select>
-        </div>
-      </div>
-
       <template id="studentTemplate">
-        <div class="design-data">
-          <h2 class="data-name">name</h2>
-          <p class="data-house">house</p>
+        <div id="design-data">
+          <h2 id="data-firstName">name</h2>
+          <h2 id="data-lastName"></h2>
+          <p id="data-house">house</p>
           <button class="popup-button">See more information</button>
           <button class="delete-button">Delete</button>
         </div>
