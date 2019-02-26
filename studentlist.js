@@ -1,37 +1,42 @@
 "use strict";
 
+const template = document.querySelector("#studentTemplate").content;
+const urlJson = "http://petlatkea.dk/2019/hogwarts/students.json";
+
+
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
   console.log("init");
-
-  // TODO: Load JSON, create clones, build list, add event listeners, show modal, find images, and other stuff ...
-  getJSON();
+fetch("http://petlatkea.dk/2019/hogwarts/students.json")
+    .then(res => res.json()) // Get the response as a JSON format
+    .then(getJSON); // Call the next function
 }
 
-function getJSON() {
+function getJSON(studentList) {
   console.log("getJSON");
 
-  // NOTE: Maybe also call sortByFirst the first time ... Investigate!
-  filterList();
-}
+     // Execute the function on each element
+  studentList.forEach(showSingleStudent);
 
-function filterList() {
-  console.log("filterList");
-
-  displayList();
-}
-
-function displayList() {
-  console.log("displayList");
-}
-
-// TODO: Create scaffolding functions for the rest!
-
-function clickSortByFirst() {
 
 }
 
-function sortListByFirst() {
 
+
+// Declare the callback function to show single student
+function showSingleStudent(student) {
+  // Declare the variable for the copy
+  const copy = template.cloneNode(true);
+  //The cloneNode creates a copy of the node, and returns the clone. The cloneNode() method clones all attributes and their values.
+
+  // Get the text of the "h1" element in the document and change the title for each student
+  copy.querySelector("h2").textContent = student.fullname;
+  copy.querySelector("p").textContent = student.house;
+
+  // Insert the cloned node to the document - in the html element "main" - with the appendChild() method.
+  document.querySelector("main").appendChild(copy);
 }
+
+// Call the function
+init();
