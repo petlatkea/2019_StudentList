@@ -7,8 +7,44 @@
     <link rel="stylesheet" href="studentlist.css" type="text/css" />
   </head>
   <body>
-    <h1>Hogwarts</h1>
+    <h1>Welcome To Hogwarts</h1>
     <main>
+      <div class="dropdown-container">
+        <div class="dropdown-content">
+          <select name="filter-Maison" class="dropdown-select">
+            <option>Filter...</option>
+            <option class="filter_button" data-house="all">All</option>
+            <option class="filter_button" data-house="Hufflepuff"
+              >Hufflepuff</option
+            >
+            <option class="filter_button" data-house="Gryffondor"
+              >Gryffondor</option
+            >
+            <option class="filter_button" data-house="Ravenclaw"
+              >Ravenclaw</option
+            >
+            <option class="filter_button" data-house="Slytherin"
+              >Serpentard</option
+            >
+          </select>
+        </div>
+      </div>
+
+      <div class="dropdown-container">
+        <div class="dropdown-content">
+          <select name="Sort-student" class="dropdown-select">
+            <option>Sort...</option>
+            <option class="sort_button" data-sort="firstNamestudent"
+              >First name</option
+            >
+            <option class="sort_button" data-sort="lastNamestudent"
+              >Last name</option
+            >
+            <option class="sort_button" data-sort="houseStudent">House</option>
+          </select>
+        </div>
+      </div>
+
       <template id="studentTemplate">
         <div>
           <h2 class="data-name">name</h2>
