@@ -11,13 +11,19 @@
 
     <div class="dropdown-container">
       <div class="dropdown-content">
-        <select name="filter-Maison" class="dropdown-select">
+        <select name="filter-Maison" id="dropdown-select">
           <option>Filter...</option>
-          <option id="filter_button_all" data-house="all">All</option>
-          <option id="filter_button_Hufflepuff" data-house="Hufflepuff"
+          <option value="0" id="filter_button_all" data-house="all">All</option>
+          <option
+            value="1"
+            id="filter_button_Hufflepuff"
+            data-house="Hufflepuff"
             >Hufflepuff</option
           >
-          <option id="filter_button_Gryffondor" data-house="Gryffondor"
+          <option
+            value="2"
+            id="filter_button_Gryffondor"
+            data-house="Gryffondor"
             >Gryffondor</option
           >
           <option id="filter_button_Ravenclaw" data-house="Ravenclaw"

@@ -2,8 +2,17 @@
 
 const template = document.querySelector("#studentTemplate").content;
 const urlJson = "http://petlatkea.dk/2019/hogwarts/students.json";
-let arrayOfStudents = [];
-let filterArray;
+
+// object
+const Poudlard_Student = {
+  // properties
+  firstName: "-studentFirstName-",
+  middleName: "-studentMidlleName-",
+  lastName: "-studentLastName-",
+  imagename: "-studentImage-",
+  house: "-studentHouse-"
+};
+const arrayOfStudents = [];
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -17,96 +26,76 @@ function init() {
 function getJSON(studentList) {
   console.log("getJson");
 
-  // Execute the function on each element
-  studentList.forEach(showSingleStudent);
-}
-
-// Declare the callback function to show single student
-function showSingleStudent(student) {
-  // Declare the variable for the copy
-  const copy = template.cloneNode(true);
-  //The cloneNode creates a copy of the node, and returns the clone. The cloneNode() method clones all attributes and their values.
-
-  // Get the text of the "h1" element in the document and change the title for each student
-  copy.querySelector("h2").textContent = student.fullname;
-  copy.querySelector("p").textContent = student.house;
-
-  // Insert the cloned node to the document - in the html element "main" - with the appendChild() method.
-  document.querySelector("main").appendChild(copy);
-}
-
-// Call the function
-init();
-
-const Hogward_Student = {
-  // - add properties and values
-  firstName: "-firstName-",
-  lastName: "-lastName-",
-  house: "-house-",
-  // - function for divided fullname
-  splitingName(fullName) {
-    const firstSpace = fullName.indexOf(" ");
-    const lastSpace = fullName.lastIndexOf(" ");
-    this.firstName = fullName.slice(0, firstSpace + 1);
-    this.lastName = fullName.slice(lastSpace + 1);
-  },
-  assignHouse(student) {
-    this.house = student.house;
-  }
-};
-function getnameLength(firstSpace) {
-  return firstSpace.length;
-  console.log(firstSpace("john"));
-}
-
-function buildObjects(dataList) {
-  dataList.forEach(onedata => {
-    let student = Object.create(Hogward_Student);
-    student.splitingName(onedata.fullname);
-    student.assignHouse(onedata);
-    // console.log(student);
-    arrayOfStudents.push(student);
+  // splitting
+  studentList.forEach(showSingleStudent => {
+    let newStudent = Object.create(Poudlard_Student);
+    let fullName = showSingleStudent.fullname.split(" ");
+    if (fullName[2]) {
+      newStudent.firstName = fullName[0];
+      newStudent.middleName = fullName[1];
+      newStudent.lastName = fullName[2];
+    } else {
+      newStudent.firstName = fullName[0];
+      newStudent.lastName = fullName[1];
+    }
+    newStudent.house = showSingleStudent.house;
+    arrayOfStudents.push(newStudent);
   });
-  // console.log(arrayOfStudents);
-  filterArray = arrayOfStudents;
-  filterByHouse(filterArray);
+  displayStud(arrayOfStudents);
 }
 
-function filterByHouse(filterArray) {
-  filterArray.filter(onlyGryffindor);
-  filterArray.filter(onlyHufflepuff);
-  filterArray.filter(onlyRavenclaw);
-  filterArray.filter(onlySlytherin);
+function displayStud(arraystud) {
+  template.innerHTML = "";
+  arraystud.forEach(nouveau => {
+    // Declare the variable for the copy
+    const copy = template.cloneNode(true);
+    console.log(nouveau);
+    //The cloneNode creates a copy of the node, and returns the clone. The cloneNode() method clones all attributes and their values.
+    copy.querySelector("#data-firstName").textContent = nouveau.firstName;
+    copy.querySelector("#data-lastName").textContent = nouveau.lastName;
+    copy.querySelector("#data-house").textContent = nouveau.house;
+    document.querySelector("main").appendChild(copy);
+  });
 }
 
-function onlyGryffindor(element) {
-  if (element.house === "Gryffindor") {
-    return true;
-  } else {
-    return false;
-  }
+// function that returns an array of only specific students.
+
+function filterHouse(House) {
+  let houseFiltered = [];
+
+  houseFiltered = arrayOfStudents.filter(flr => flr.House === House);
+
+  return houseFiltered;
 }
 
-function onlyHufflepuff(element) {
-  if (element.house === "Hufflepuff") {
-    return true;
-  } else {
-    return false;
-  }
+function displayAll() {
+  displayStud(arrayOfStudents);
 }
 
-function onlyRavenclaw(element) {
-  if (element.house === "Ravenclaw") {
-    return true;
-  } else {
-    return false;
-  }
+function filterSlytherin() {
+  displayStud(filterHouse("Slytherin"));
+}
+function filterGryffindor() {
+  displayStud(filterHouse("Gryffindor"));
+}
+function filterHufflepuff() {
+  displayStud(filterHouse("Hufflepuff"));
+}
+function filterRavenclaw() {
+  displayStud(filterHouse("Ravenclaw"));
 }
 
-function onlySlytherin(element) {
-  if (element.house === "Slytherin") {
-    return true;
-  } else {
-    return false;
-  }
-}
+let allFilter = document.querySelector("#filter_button_all");
+let slytherinFilter = document.querySelector("#filter_button_Slytherin");
+let gryffindorFilter = document.querySelector("#filter_button_Gryffondor");
+let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
+let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
+let s = document.getElementById("dropdown-select");
+
+allFilter.addEventListener("change", displayAll);
+slytherinFilter.addEventListener("change", filterSlytherin);
+gryffindorFilter.addEventListener("change", filterGryffindor);
+hufflepuffFilter.addEventListener("change", filterHufflepuff);
+ravenclawFilter.addEventListener("change", filterRavenclaw);
+
+init();
