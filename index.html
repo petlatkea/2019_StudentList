@@ -9,47 +9,35 @@
   <body>
     <h1>Welcome To Hogwarts</h1>
 
-    <div class="dropdown-container">
-      <div class="dropdown-content">
-        <select name="filter-Maison" id="dropdown-select">
-          <option>Filter...</option>
-          <option value="0" id="filter_button_all" data-house="all">All</option>
-          <option
-            value="1"
-            id="filter_button_Hufflepuff"
-            data-house="Hufflepuff"
-            >Hufflepuff</option
-          >
-          <option
-            value="2"
-            id="filter_button_Gryffondor"
-            data-house="Gryffondor"
-            >Gryffondor</option
-          >
-          <option id="filter_button_Ravenclaw" data-house="Ravenclaw"
-            >Ravenclaw</option
-          >
-          <option id="filter_button_Slytherin" data-house="Slytherin"
-            >Serpentard</option
-          >
-        </select>
+    <nav id="buttons" class="dropdown-container">
+      <div id="filtering_button">
+        Filter :
+        <div id="filter_button_all" data-filter="all">All</div>
+        <div id="filter_button_Hufflepuff" data-filter="Hufflepuff">
+          Hufflepuff
+        </div>
+        <div id="filter_button_Gryffondor" data-filter="Gryffondor">
+          Gryffondor
+        </div>
+        <div id="filter_button_Ravenclaw" data-filter="Ravenclaw">
+          Ravenclaw
+        </div>
+        <div id="filter_button_Slytherin" data-filter="Slytherin">
+          Serpentard
+        </div>
       </div>
-    </div>
+      <div id="sorting_button">
+        Sort :
+        <div id="sort_button_first" data-sort="firstNamestudent">
+          First name
+        </div>
+        <div id="sort_button_last" data-sort="lastNamestudent">
+          Last name
+        </div>
+        <div id="sort_button_house" data-sort="houseStudent">House</div>
+      </div>
+    </nav>
 
-    <div class="dropdown-container">
-      <div class="dropdown-content">
-        <select name="Sort-student" class="dropdown-select">
-          <option>Sort...</option>
-          <option class="sort_button" data-sort="firstNamestudent"
-            >First name</option
-          >
-          <option class="sort_button" data-sort="lastNamestudent"
-            >Last name</option
-          >
-          <option class="sort_button" data-sort="houseStudent">House</option>
-        </select>
-      </div>
-    </div>
     <main>
       <template id="studentTemplate">
         <div id="design-data">
