@@ -96,6 +96,8 @@ function filterRavenclaw() {
   displayStud(filterHouse("Ravenclaw"));
 }
 
+// TIME to try the sorting ...
+
 loadFilter();
 
 init();
