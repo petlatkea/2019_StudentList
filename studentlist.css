@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
 .gryffindor {
   background-color: #ce3a0a;
   color: #fdb02e;
@@ -18,24 +22,22 @@
   color: #c0b1c6;
 }
 
-.dropdown-container {
-  margin: 0 auto;
-  display: inline-block;
-  width: 110px;
-}
-
-.design-data {
+#box-student {
   display: grid;
-  grid-template-columns: 400px 300px 200px 200px;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-gap: 20px;
+}
+
+#sorting_button {
+  margin-top: 10px;
+  padding: 10px;
 }
 
 button {
   align-self: center;
   background: transparent;
 
-  margin: 0 1rem;
   transition: all 0.5s ease;
   color: #41403e;
   font-size: 1rem;
