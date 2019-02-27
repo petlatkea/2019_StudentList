@@ -11,11 +11,13 @@ const Poudlard_Student = {
   house: "-studentHouse-"
 };
 const arrayOfStudents = [];
+let sortArray = [];
 let allFilter = document.querySelector("#filter_button_all");
 let slytherinFilter = document.querySelector("#filter_button_Slytherin");
 let gryffindorFilter = document.querySelector("#filter_button_Gryffondor");
 let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
 let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
+let sortByFirstNameSlt = document.querySelector("#sort_button_first");
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -59,6 +61,7 @@ function displayStud(arraystud) {
     copy.querySelector("#data-lastName").textContent = nouveau.lastName;
     copy.querySelector("#data-house").textContent = nouveau.house;
     boxstudent.appendChild(copy);
+    sortArray = arraystud;
   });
 }
 
@@ -77,7 +80,6 @@ function loadFilter() {
   gryffindorFilter.addEventListener("click", filterGryffindor);
   hufflepuffFilter.addEventListener("click", filterHufflepuff);
   ravenclawFilter.addEventListener("click", filterRavenclaw);
-  filterRavenclaw();
 }
 
 function displayAll() {
@@ -99,6 +101,20 @@ function filterRavenclaw() {
 
 // TIME to try the sorting ...
 
+// first name sorting
+function sortByFirstName() {
+  let sortedArray;
+  sortedArray = sortArray.sort((a, b) =>
+    a.firstName.localeCompare(b.firstName)
+  );
+  displayStud(sortedArray);
+}
+
+function loadSort() {
+  sortByFirstNameSlt.addEventListener("click", sortByFirstName);
+}
+
+loadSort();
 loadFilter();
 
 init();
