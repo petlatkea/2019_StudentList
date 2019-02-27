@@ -12,19 +12,19 @@
     <nav id="buttons" class="dropdown-container">
       <div id="filtering_button">
         Filter :
-        <div id="filter_button_all" data-filter="all">All</div>
-        <div id="filter_button_Hufflepuff" data-filter="Hufflepuff">
+        <button id="filter_button_all" data-filter="all">All</button>
+        <button id="filter_button_Hufflepuff" data-filter="Hufflepuff">
           Hufflepuff
-        </div>
-        <div id="filter_button_Gryffondor" data-filter="Gryffondor">
+        </button>
+        <button id="filter_button_Gryffondor" data-filter="Gryffondor">
           Gryffondor
-        </div>
-        <div id="filter_button_Ravenclaw" data-filter="Ravenclaw">
+        </button>
+        <button id="filter_button_Ravenclaw" data-filter="Ravenclaw">
           Ravenclaw
-        </div>
-        <div id="filter_button_Slytherin" data-filter="Slytherin">
+        </button>
+        <button id="filter_button_Slytherin" data-filter="Slytherin">
           Serpentard
-        </div>
+        </button>
       </div>
       <div id="sorting_button">
         Sort :
@@ -38,17 +38,17 @@
       </div>
     </nav>
 
-    <main>
+    <div id="box-student">
       <template id="studentTemplate">
         <div id="design-data">
           <h2 id="data-firstName">name</h2>
           <h2 id="data-lastName"></h2>
           <p id="data-house">house</p>
-          <button class="popup-button">See more information</button>
-          <button class="delete-button">Delete</button>
+          <button class="popup-button">Pop me</button>
+          <button class="delete-button">Expel</button>
         </div>
       </template>
-    </main>
+    </div>
 
     <script src="studentlist.js"></script>
   </body>

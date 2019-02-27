@@ -1,9 +1,7 @@
 "use strict";
-
+let boxstudent = document.querySelector("#box-student");
 const template = document.querySelector("#studentTemplate").content;
 const urlJson = "http://petlatkea.dk/2019/hogwarts/students.json";
-
-// object
 const Poudlard_Student = {
   // properties
   firstName: "-studentFirstName-",
@@ -13,6 +11,11 @@ const Poudlard_Student = {
   house: "-studentHouse-"
 };
 const arrayOfStudents = [];
+let allFilter = document.querySelector("#filter_button_all");
+let slytherinFilter = document.querySelector("#filter_button_Slytherin");
+let gryffindorFilter = document.querySelector("#filter_button_Gryffondor");
+let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
+let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -45,7 +48,7 @@ function getJSON(studentList) {
 }
 
 function displayStud(arraystud) {
-  template.innerHTML = "";
+  boxstudent.innerHTML = "";
   arraystud.forEach(nouveau => {
     // Declare the variable for the copy
     const copy = template.cloneNode(true);
@@ -54,18 +57,26 @@ function displayStud(arraystud) {
     copy.querySelector("#data-firstName").textContent = nouveau.firstName;
     copy.querySelector("#data-lastName").textContent = nouveau.lastName;
     copy.querySelector("#data-house").textContent = nouveau.house;
-    document.querySelector("main").appendChild(copy);
+    boxstudent.appendChild(copy);
   });
 }
 
-// function that returns an array of only specific students.
-
+// filtering   fixed the select to display !!! IT's WORkiiiiiiiiiiign Alleeeeluiaaa
 function filterHouse(House) {
   let houseFiltered = [];
 
-  houseFiltered = arrayOfStudents.filter(flr => flr.House === House);
+  houseFiltered = arrayOfStudents.filter(flr => flr.house === House);
 
   return houseFiltered;
+}
+
+function loadFilter() {
+  allFilter.addEventListener("click", displayAll);
+  slytherinFilter.addEventListener("click", filterSlytherin);
+  gryffindorFilter.addEventListener("click", filterGryffindor);
+  hufflepuffFilter.addEventListener("click", filterHufflepuff);
+  ravenclawFilter.addEventListener("click", filterRavenclaw);
+  filterRavenclaw();
 }
 
 function displayAll() {
@@ -85,17 +96,6 @@ function filterRavenclaw() {
   displayStud(filterHouse("Ravenclaw"));
 }
 
-let allFilter = document.querySelector("#filter_button_all");
-let slytherinFilter = document.querySelector("#filter_button_Slytherin");
-let gryffindorFilter = document.querySelector("#filter_button_Gryffondor");
-let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
-let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
-let s = document.getElementById("dropdown-select");
-
-allFilter.addEventListener("change", displayAll);
-slytherinFilter.addEventListener("change", filterSlytherin);
-gryffindorFilter.addEventListener("change", filterGryffindor);
-hufflepuffFilter.addEventListener("change", filterHufflepuff);
-ravenclawFilter.addEventListener("change", filterRavenclaw);
+loadFilter();
 
 init();
