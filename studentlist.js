@@ -18,6 +18,7 @@ let gryffindorFilter = document.querySelector("#filter_button_Gryffondor");
 let hufflepuffFilter = document.querySelector("#filter_button_Hufflepuff");
 let ravenclawFilter = document.querySelector("#filter_button_Ravenclaw");
 let sortByFirstNameSlt = document.querySelector("#sort_button_first");
+let sortByLastNameSlt = document.querySelector("#sort_button_last");
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -57,7 +58,7 @@ function displayStud(arraystud) {
     console.log(nouveau);
     //The cloneNode creates a copy of the node, and returns the clone. The cloneNode() method clones all attributes and their values.
     copy.querySelector("#data-firstName").textContent = nouveau.firstName;
-    copy.querySelector("#data-midlName").textContent = nouveau.middleName;
+
     copy.querySelector("#data-lastName").textContent = nouveau.lastName;
     copy.querySelector("#data-house").textContent = nouveau.house;
     boxstudent.appendChild(copy);
@@ -103,15 +104,36 @@ function filterRavenclaw() {
 
 // first name sorting
 function sortByFirstName() {
-  let sortedArray;
-  sortedArray = sortArray.sort((a, b) =>
-    a.firstName.localeCompare(b.firstName)
-  );
-  displayStud(sortedArray);
+  sortArray.sort(byFirstName);
+  function byFirstName(a, b) {
+    if (a.firstName < b.firstName) {
+      return -1;
+    } else if (a.firstName > b.firstName) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  displayStud(sortArray);
 }
 
 function loadSort() {
   sortByFirstNameSlt.addEventListener("click", sortByFirstName);
+  sortByLastNameSlt.addEventListener("click", sortByLastName);
+}
+
+// Last name sorting
+function sortByLastName() {
+  sortArray.sort(byLastName);
+  function byLastName(a, b) {
+    if (a.lastName < b.lastName) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+  displayStud(sortArray);
 }
 
 loadSort();
