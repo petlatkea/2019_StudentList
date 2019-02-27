@@ -5,7 +5,7 @@ const urlJson = "http://petlatkea.dk/2019/hogwarts/students.json";
 const Poudlard_Student = {
   // properties
   firstName: "-studentFirstName-",
-  middleName: "-studentMidlleName-",
+  middleName: "-Unknown-",
   lastName: "-studentLastName-",
   imagename: "-studentImage-",
   house: "-studentHouse-"
@@ -55,6 +55,7 @@ function displayStud(arraystud) {
     console.log(nouveau);
     //The cloneNode creates a copy of the node, and returns the clone. The cloneNode() method clones all attributes and their values.
     copy.querySelector("#data-firstName").textContent = nouveau.firstName;
+    copy.querySelector("#data-midlName").textContent = nouveau.middleName;
     copy.querySelector("#data-lastName").textContent = nouveau.lastName;
     copy.querySelector("#data-house").textContent = nouveau.house;
     boxstudent.appendChild(copy);
